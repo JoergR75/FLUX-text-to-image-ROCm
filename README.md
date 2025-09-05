@@ -32,7 +32,7 @@ The script leverages **[Hugging Face Diffusers](https://huggingface.co/docs/diff
 
 ## 🛠️ Installation
 
-### 1. Clone the repository
+### 1. Download the Python script
 ```bash
-git clone https://github.com/yourusername/flux-rocm-benchmark.git
-cd flux-rocm-benchmark
+wget 
+```
