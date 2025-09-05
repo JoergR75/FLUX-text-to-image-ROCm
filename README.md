@@ -109,3 +109,41 @@ python3 flux_rocm.py --prompt "..." --low-vram
   GPU0 peak allocated: 15522.1 MB, reserved: 16200.4 MB
   GPU1 peak allocated: 15489.3 MB, reserved: 16187.6 MB
 ```
+## 📌 Requirements
+
+- **Python** ≥ 3.10  
+- **ROCm** ≥ 6.0  
+- **PyTorch ROCm** ≥ 2.3  
+- **AMD GPU** (RDNA3/4 or CDNA2/3 recommended)  
+- **Dual 32GB GPUs** recommended for 1280×960 high-quality generations  
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+See [LICENSE](LICENSE) for more details.
+
+---
+
+## 🧩 Roadmap
+
+- [ ] Add **Flux Turbo** benchmarking  
+- [ ] Support **LoRA fine-tuning**  
+- [ ] WebUI integration for prompt testing  
+- [ ] ONNX + AMD ROCm Graph Mode for speedup  
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!  
+If you'd like to add improvements, please open an **issue** first to discuss your ideas.
+
+---
+
+## 🌟 Acknowledgments
+
+- [Hugging Face Diffusers](https://huggingface.co/docs/diffusers)  
+- [PyTorch ROCm](https://pytorch.org/)  
+- [Black Forest Labs – FLUX Models](https://huggingface.co/black-forest-labs)
