@@ -34,5 +34,40 @@ The script leverages **[Hugging Face Diffusers](https://huggingface.co/docs/diff
 
 ### 1. Download the Python script
 ```bash
-wget 
+wget https://raw.githubusercontent.com/JoergR75/FLUX-text-to-image-ROCm/refs/heads/main/flux_rocm.py
 ```
+
+### 2. Install dependencies
+```bash
+pip install --upgrade pip
+pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.0
+pip install diffusers transformers huggingface_hub accelerate safetensors
+```
+
+## ⚡ Usage
+Basic Example
+```bash
+python3 flux_rocm.py \
+  --prompt "a hyperrealistic exploring spaceship between other smaller spaceships and a huge planet in space, cinematic" \
+  --model black-forest-labs/FLUX.1-dev \
+  --steps 50 \
+  --width 1280 \
+  --height 960 \
+  --out spaceship_50.png \
+  --hf-token hf_your_token_here
+```
+
+### **Key Parameters**
+
+| Parameter     | Type   | Default                            | Description                         |
+|--------------|--------|------------------------------------|-------------------------------------|
+| `--prompt`   | str    | **required**                       | Text prompt for image generation   |
+| `--model`    | str    | `black-forest-labs/FLUX.1-schnell` | Hugging Face model ID             |
+| `--steps`    | int    | 24                                 | Number of inference steps         |
+| `--guidance` | float  | 3.5                                | Classifier-free guidance scale    |
+| `--width`    | int    | 1024                               | Output image width               |
+| `--height`   | int    | 1024                               | Output image height              |
+| `--dtype`    | str    | `bf16`                             | Compute precision (`bf16` or `fp16`) |
+| `--low-vram` | flag   | disabled                           | Enable memory optimizations      |
+| `--hf-token` | str    | `None`                             | Hugging Face access token        |
+| `--out`      | str    | `flux_out.png`                     | Output image filename            |
