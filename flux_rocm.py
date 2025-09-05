@@ -12,7 +12,7 @@ python3 flux_test7.py \
   --width 1280 \
   --height 960 \
   --out spaceship_50.png \
-  --hf-token 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
+  --hf-token hf_xxx (add your Hugging Face token here)
 
 """
 
