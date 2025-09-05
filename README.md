@@ -71,3 +71,41 @@ python3 flux_rocm.py \
 | `--low-vram` | flag   | disabled                           | Enable memory optimizations      |
 | `--hf-token` | str    | `None`                             | Hugging Face access token        |
 | `--out`      | str    | `flux_out.png`                     | Output image filename            |
+
+## 🧠 Multi-GPU Optimization (ROCm)
+
+This script automatically enables multi-GPU balanced memory allocation via PyTorch & Accelerate:
+```bash
+os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
+os.environ["ACCELERATE_USE_BALANCED_MEMORY"] = "1"
+os.environ["ACCELERATE_USE_DEVICE_MAP"] = "balanced"
+```
+
+If you have 2× 32GB GPUs, the workload is split evenly.
+For low-VRAM GPUs, you can enable sequential CPU offloading:
+```bash
+python3 flux_rocm.py --prompt "..." --low-vram
+```
+
+## 📊 Benchmark Metrics
+
+| Metric | Description |
+|--------|------------|
+| **TTFT** | Time to First Token (pipeline warm-up + inference start) |
+| **TaFT** | Total time from start to finish |
+| **ToD**  | Diffusion-only time |
+| **t/s**  | Inference steps per second |
+| **VRAM** | Peak memory allocated & reserved per GPU |
+
+---
+
+### **Example Output**
+```bash
+[benchmark]
+  TTFT (forward):   3.12 sec
+  TaFT (total):     18.45 sec
+  ToD  (diffuse):   15.88 sec
+  t/s  (steps/s):   3.15
+  GPU0 peak allocated: 15522.1 MB, reserved: 16200.4 MB
+  GPU1 peak allocated: 15489.3 MB, reserved: 16187.6 MB
+```
