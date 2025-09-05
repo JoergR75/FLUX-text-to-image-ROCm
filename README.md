@@ -39,9 +39,9 @@ wget https://raw.githubusercontent.com/JoergR75/FLUX-text-to-image-ROCm/refs/hea
 
 ### 2. Install dependencies
 ```bash
-pip install --upgrade pip
-pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.0
-pip install diffusers transformers huggingface_hub accelerate safetensors
+pip3 install --upgrade pip
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.0
+pip3 install diffusers transformers huggingface_hub accelerate safetensors
 ```
 
 ## ⚡ Usage
@@ -50,7 +50,7 @@ Basic Example
 python3 flux_rocm.py \
   --prompt "a hyperrealistic exploring spaceship between other smaller spaceships and a huge planet in space, cinematic" \
   --model black-forest-labs/FLUX.1-dev \
-  --steps 50 \
+  --steps 10 \
   --width 1280 \
   --height 960 \
   --out spaceship_50.png \
@@ -62,7 +62,7 @@ python3 flux_rocm.py \
 | Parameter     | Type   | Default                            | Description                         |
 |--------------|--------|------------------------------------|-------------------------------------|
 | `--prompt`   | str    | **required**                       | Text prompt for image generation   |
-| `--model`    | str    | `black-forest-labs/FLUX.1-schnell` | Hugging Face model ID             |
+| `--model`    | str    | `black-forest-labs/FLUX.1-dev`     | Hugging Face model ID             |
 | `--steps`    | int    | 24                                 | Number of inference steps         |
 | `--guidance` | float  | 3.5                                | Classifier-free guidance scale    |
 | `--width`    | int    | 1024                               | Output image width               |
