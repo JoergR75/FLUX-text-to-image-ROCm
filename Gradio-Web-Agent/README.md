@@ -24,42 +24,85 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 - Hugging Face `diffusers` library  
 - Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil`
 
-Install dependencies:
+# Code Explanation: FLUX Gradio Web Agent
 
-```bash
-# Example for ROCm 6.4
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.4
+This script provides a **Gradio-based web UI** for running the **FLUX text-to-image model** with AMD ROCm optimizations.  
+It is designed as a drop-in replacement for CLI workflows but with an interactive interface.
 
-# Common dependencies
-pip install diffusers transformers accelerate safetensors gradio psutil
+---
 
-▶️ Usage
-Run the web agent:
-python3 flux_gradio_web_agent.py
-Typical output:
-Running on local URL:  http://127.0.0.1:7860
-To create a public link, set `share=True` in `launch()`.
-Then open your browser and go to:
-👉 http://127.0.0.1:7860
-💡 Example Prompt
-Inside the web UI, enter a prompt such as:
-a hyperrealistic exploring spaceship between other smaller spaceships and a huge planet in space, cinematic
-The model will generate and display the result directly in the Gradio interface.
-⚙️ Configuration
-The script can be customized to suit your needs:
-Model: defaults to black-forest-labs/FLUX.1-dev
-Steps: number of denoising steps (default: 24)
-Width / Height: image resolution (default: 1280×960)
-Prompt / Negative prompt: adjustable in the UI
-share=True: enable to get a public link
-📊 Benchmarking
-The web agent logs useful performance stats:
-TaFT (Time a Frame Took)
-ToD (Time on Device)
-Throughput (tokens/sec)
-VRAM usage per GPU
-This is helpful for comparing performance across GPUs and environments.
-🖼️ Screenshots & Examples
-(Add your own generated images here)
-Example:
-![Example output](examples/spaceship.png)
+## 🔹 Imports and Setup
+
+```python
+import os, math, time, warnings
+from functools import lru_cache
+
+import torch
+import gradio as gr
+from diffusers import FluxPipeline
+from huggingface_hub import login
+
+torch → deep learning backend with ROCm/CUDA support
+gradio → builds the web interface
+diffusers.FluxPipeline → loads and runs the FLUX model
+huggingface_hub.login → optional Hugging Face authentication for private models
+Warnings about expandable segments are filtered to avoid clutter.
+🔹 Helper Functions
+def even(x): ...
+def pick_dtype(opt_dtype: str): ...
+even() → ensures image dimensions are even (some models require this).
+pick_dtype() → chooses the compute precision (bf16 if available, otherwise fp16).
+🔹 Pipeline Loader (with Caching)
+@lru_cache(maxsize=4)
+def get_pipeline(model_id, dtype_str, low_vram, hf_token):
+    ...
+Uses lru_cache to avoid reloading the model on every generation.
+Configures memory management for multi-GPU ROCm setups.
+Supports:
+bf16 / fp16 compute
+LoRA weight loading (optional)
+Low VRAM mode (attention slicing + CPU offload)
+Attempts torch.compile to speed up UNet and text encoder.
+🔹 Image Generation Function
+def generate_image(...):
+    ...
+Called by the Gradio UI when Generate is clicked.
+Steps:
+Ensures width/height are valid.
+Loads pipeline (cached).
+Prepares random seed (or deterministic if set).
+Runs a 1-step warm-up for stability.
+Runs full inference and measures:
+ToD → time spent in diffusion
+TaFT → total generation time
+Steps/s → throughput
+Collects VRAM usage per GPU.
+Optionally saves the image to disk.
+Returns the image and a benchmark report.
+🔹 Gradio UI
+def build_ui():
+    with gr.Blocks(title="FLUX Text-to-Image Bot (ROCm)") as demo:
+        ...
+UI layout:
+Prompt inputs: prompt, negative prompt, model ID, HF token
+Generation settings: steps, guidance scale, width/height, seed, dtype, low-VRAM toggle
+Output options: save-to-disk toggle + path
+Results: generated image + benchmark info
+A Generate button triggers the generate_image() function.
+Provides a tip for remote usage: GRADIO_SERVER_NAME=0.0.0.0.
+🔹 Main Launcher
+if __name__ == "__main__":
+    ui = build_ui()
+    ui.launch(server_name=os.environ.get("GRADIO_SERVER_NAME", "127.0.0.1"),
+              server_port=int(os.environ.get("GRADIO_PORT", 7860)))
+Starts the Gradio server on http://127.0.0.1:7860 by default.
+Supports environment variables:
+GRADIO_SERVER_NAME=0.0.0.0 → listen on all interfaces (for remote servers)
+GRADIO_PORT=XXXX → choose a custom port
+🔹 Key Features Recap
+Multi-GPU ROCm / CUDA optimization
+bf16/fp16 precision with fallback
+Optional low VRAM mode
+Gradio UI for easy prompt entry
+Benchmark logging (steps/sec, VRAM usage, timings)
+Supports Hugging Face authentication for gated/private models
