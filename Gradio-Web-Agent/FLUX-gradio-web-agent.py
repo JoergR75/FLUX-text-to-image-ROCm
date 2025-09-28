@@ -10,7 +10,7 @@ Features:
  - Shows generated image, lets user download it, and prints benchmark stats
 
 Run:
-  python3 flux_t2i_bot.py
+  python3 flux_gradio-web-agent.py
 
 Notes:
  - Requires `gradio`, `diffusers`, `accelerate`, `huggingface_hub`, and ROCm/PyTorch.
