@@ -1,4 +1,4 @@
-# FLUX - Gradio Web UI Agent
+# 🤖 FLUX - Gradio Web UI Agent
 
 A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
@@ -31,7 +31,7 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 - Python **3.10+**  
 - PyTorch (with ROCm support) -> use the [ROCm 6.4.3 automated deployment script](https://github.com/JoergR75/rocm-6.4.3-rdna4-docker-automated-deployment) 
 - Hugging Face `diffusers` library  
-- Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil`
+- Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil` includet in the [ROCm 6.4.3 automated deployment script](https://github.com/JoergR75/rocm-6.4.3-rdna4-docker-automated-deployment) 
 
 # Code Explanation: FLUX Gradio Web Agent
 
