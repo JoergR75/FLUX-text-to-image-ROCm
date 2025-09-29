@@ -2,6 +2,13 @@
 
 A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
+**Optimized for Multi-GPU (Dual 32GB GPUs) · Supports bf16/fp16 · Hugging Face Models**
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)  
+[![ROCm](https://img.shields.io/badge/AMD-ROCm_6.x-red)](https://rocmdocs.amd.com/)  
+[![Diffusers](https://img.shields.io/badge/HuggingFace-Diffusers-yellow)](https://huggingface.co/docs/diffusers)  
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Gradio Quickstart](https://img.shields.io/badge/Gradio-Quickstart-blue)](https://www.gradio.app/guides/quickstart)
 
 <img width="1709" height="952" alt="image" src="https://github.com/user-attachments/assets/2ac83f03-1aec-4c82-b4f0-47a5815b9d8a" />
 
@@ -14,15 +21,15 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 - 📊 Automatic logging of:
   - Inference speed (tokens/sec, steps/sec)
   - VRAM usage (per GPU)
-- ⚡ ROCm compatible (tested on AMD Instinct MI210, Radeon AI PRO R9700 @ ROCm &.4.3 & 7.0.1)  
+- ⚡ ROCm compatible (tested on AMD Instinct MI210, Radeon AI PRO R9700 @ ROCm 6.4.3 & 7.0.1)  
 - 🌍 Optional public link sharing with `share=True`  
 
 ---
 
 ## 📦 Requirements
 
-- Python **3.9+**  
-- PyTorch (with ROCm support)  
+- Python **3.10+**  
+- PyTorch (with ROCm support) -> use the [ROCm 6.4.3 automated deployment script](https://github.com/JoergR75/rocm-6.4.3-rdna4-docker-automated-deployment) 
 - Hugging Face `diffusers` library  
 - Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil`
 
