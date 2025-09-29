@@ -1,6 +1,6 @@
 # FLUX - Gradio Web Agent
 
-A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm and CUDA systems.  
+A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
 
 <img width="1709" height="952" alt="image" src="https://github.com/user-attachments/assets/2ac83f03-1aec-4c82-b4f0-47a5815b9d8a" />
@@ -14,7 +14,7 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 - 📊 Automatic logging of:
   - Inference speed (tokens/sec, steps/sec)
   - VRAM usage (per GPU)
-- ⚡ ROCm and CUDA compatible (tested on AMD Instinct MI210, ROCm 6.4)  
+- ⚡ ROCm compatible (tested on AMD Instinct MI210, Radeon AI PRO R9700 @ ROCm &.4.3 & 7.0.1)  
 - 🌍 Optional public link sharing with `share=True`  
 
 ---
@@ -22,7 +22,7 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 ## 📦 Requirements
 
 - Python **3.9+**  
-- PyTorch (with ROCm or CUDA support)  
+- PyTorch (with ROCm support)  
 - Hugging Face `diffusers` library  
 - Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil`
 
@@ -49,6 +49,7 @@ gradio → builds the web interface
 diffusers.FluxPipeline → loads and runs the FLUX model
 huggingface_hub.login → optional Hugging Face authentication for private models
 Warnings about expandable segments are filtered to avoid clutter.
+
 🔹 Helper Functions
 def even(x): ...
 def pick_dtype(opt_dtype: str): ...
