@@ -109,3 +109,21 @@ Optional low VRAM mode
 Gradio UI for easy prompt entry
 Benchmark logging (steps/sec, VRAM usage, timings)
 Supports Hugging Face authentication for gated/private models
+```
+
+## Installation
+
+### Download the the server script
+
+```echo
+wget https://raw.githubusercontent.com/JoergR75/FLUX-text-to-image-ROCm/refs/heads/main/Gradio-Web-Agent/FLUX-gradio-web-agent.py
+```
+<img width="1266" height="199" alt="{282018B2-4594-456B-A4C2-7B58E0AF1EE1}" src="https://github.com/user-attachments/assets/15e50547-eb49-4e11-be74-51569f440432" />
+
+### Launch the Gradio web Agent server
+
+```echo
+python3 FLUX-gradio-web-agent.py
+```
+<img width="516" height="69" alt="{297F19AF-995D-4A17-BBA1-B49F0CB68F36}" src="https://github.com/user-attachments/assets/c8b90dfb-954e-4306-9352-2afdbcf094f9" />
+
