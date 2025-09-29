@@ -81,51 +81,59 @@ Supports:
 - Attempts torch.compile to speed up UNet and text encoder.
 
 ## 🔹 Image Generation Function
+```python
 def generate_image(...):
     ...
+```
 Called by the Gradio UI when Generate is clicked.
 Steps:
-Ensures width/height are valid.
-Loads pipeline (cached).
-Prepares random seed (or deterministic if set).
-Runs a 1-step warm-up for stability.
-Runs full inference and measures:
-ToD → time spent in diffusion
-TaFT → total generation time
-Steps/s → throughput
-Collects VRAM usage per GPU.
-Optionally saves the image to disk.
-Returns the image and a benchmark report.
-🔹 Gradio UI
+- Ensures width/height are valid.
+- Loads pipeline (cached).
+- Prepares random seed (or deterministic if set).
+- Runs a 1-step warm-up for stability.
+- Runs full inference and measures:
+- ToD → time spent in diffusion
+- TaFT → total generation time
+- Steps/s → throughput
+- Collects VRAM usage per GPU.
+- Optionally saves the image to disk.
+- Returns the image and a benchmark report.
+
+## 🔹 Gradio UI
+```python
 def build_ui():
     with gr.Blocks(title="FLUX Text-to-Image Bot (ROCm)") as demo:
         ...
+```
 UI layout:
-Prompt inputs: prompt, negative prompt, model ID, HF token
-Generation settings: steps, guidance scale, width/height, seed, dtype, low-VRAM toggle
-Output options: save-to-disk toggle + path
-Results: generated image + benchmark info
+- Prompt inputs: prompt, negative prompt, model ID, HF token
+- Generation settings: steps, guidance scale, width/height, seed, dtype, low-VRAM toggle
+- Output options: save-to-disk toggle + path
+- Results: generated image + benchmark info
 A Generate button triggers the generate_image() function.
 Provides a tip for remote usage: GRADIO_SERVER_NAME=0.0.0.0.
-🔹 Main Launcher
+
+## 🔹 Main Launcher
+```python
 if __name__ == "__main__":
     ui = build_ui()
     ui.launch(server_name=os.environ.get("GRADIO_SERVER_NAME", "127.0.0.1"),
               server_port=int(os.environ.get("GRADIO_PORT", 7860)))
+```
 Starts the Gradio server on http://127.0.0.1:7860 by default.
 Supports environment variables:
-GRADIO_SERVER_NAME=0.0.0.0 → listen on all interfaces (for remote servers)
-GRADIO_PORT=XXXX → choose a custom port
-🔹 Key Features Recap
-Multi-GPU ROCm / CUDA optimization
-bf16/fp16 precision with fallback
-Optional low VRAM mode
-Gradio UI for easy prompt entry
-Benchmark logging (steps/sec, VRAM usage, timings)
-Supports Hugging Face authentication for gated/private models
-```
+- GRADIO_SERVER_NAME=0.0.0.0 → listen on all interfaces (for remote servers)
+- GRADIO_PORT=XXXX → choose a custom port
 
-## Installation
+## 🔹 Key Features Recap
+- Multi-GPU ROCm optimization
+- bf16/fp16 precision with fallback
+- Optional low VRAM mode
+- Gradio UI for easy prompt entry
+- Benchmark logging (steps/sec, VRAM usage, timings)
+- Supports Hugging Face authentication for gated/private models
+
+# 🌀 Installation
 
 ### Download the the server script
 
