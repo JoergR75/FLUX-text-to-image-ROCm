@@ -33,7 +33,7 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 - Hugging Face `diffusers` library  
 - Additional packages: `transformers`, `accelerate`, `safetensors`, `gradio`, `psutil` includet in the [ROCm 6.4.3 automated deployment script](https://github.com/JoergR75/rocm-6.4.3-rdna4-docker-automated-deployment) 
 
-# Code Explanation: FLUX Gradio Web Agent
+# 💻 Code Explanation: FLUX Gradio Web Agent
 
 This script provides a **Gradio-based web UI** for running the **FLUX text-to-image model** with AMD ROCm optimizations.  
 It is designed as a drop-in replacement for CLI workflows but with an interactive interface.
@@ -50,30 +50,37 @@ import torch
 import gradio as gr
 from diffusers import FluxPipeline
 from huggingface_hub import login
+     ...
+```
+- torch → deep learning backend with ROCm/CUDA support
+- gradio → builds the web interface
+- diffusers.FluxPipeline → loads and runs the FLUX model
+- huggingface_hub.login → optional Hugging Face authentication for private models
+- Warnings about expandable segments are filtered to avoid clutter.
 
-torch → deep learning backend with ROCm/CUDA support
-gradio → builds the web interface
-diffusers.FluxPipeline → loads and runs the FLUX model
-huggingface_hub.login → optional Hugging Face authentication for private models
-Warnings about expandable segments are filtered to avoid clutter.
-
-🔹 Helper Functions
+## 🔹 Helper Functions
+```python
 def even(x): ...
 def pick_dtype(opt_dtype: str): ...
-even() → ensures image dimensions are even (some models require this).
-pick_dtype() → chooses the compute precision (bf16 if available, otherwise fp16).
-🔹 Pipeline Loader (with Caching)
+```
+- even() → ensures image dimensions are even (some models require this).
+- pick_dtype() → chooses the compute precision (bf16 if available, otherwise fp16).
+
+## 🔹 Pipeline Loader (with Caching)
+```python
 @lru_cache(maxsize=4)
 def get_pipeline(model_id, dtype_str, low_vram, hf_token):
     ...
+```
 Uses lru_cache to avoid reloading the model on every generation.
 Configures memory management for multi-GPU ROCm setups.
 Supports:
-bf16 / fp16 compute
-LoRA weight loading (optional)
-Low VRAM mode (attention slicing + CPU offload)
-Attempts torch.compile to speed up UNet and text encoder.
-🔹 Image Generation Function
+- bf16 / fp16 compute
+- LoRA weight loading (optional)
+- Low VRAM mode (attention slicing + CPU offload)
+- Attempts torch.compile to speed up UNet and text encoder.
+
+## 🔹 Image Generation Function
 def generate_image(...):
     ...
 Called by the Gradio UI when Generate is clicked.
