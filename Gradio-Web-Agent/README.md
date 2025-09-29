@@ -133,3 +133,14 @@ The Web server will be launched with following parameters:
 > This process can take **15–20 minutes**, depending on your hardware and internet connection.
 <img width="516" height="69" alt="{297F19AF-995D-4A17-BBA1-B49F0CB68F36}" src="https://github.com/user-attachments/assets/c8b90dfb-954e-4306-9352-2afdbcf094f9" />
 
+### Launch the Gradio web Agent from another device connected to same network
+
+First, SSH into the web server and forward port **7860**:
+```echo
+ssh -L 7860:127.0.0.1:7860 ai1@pc1
+```
+or use the the server IP address
+```echo
+ssh -L 7860:127.0.0.1:7860 ai1@192.168.178.xxx
+```
+Now you can open **http://127.0.0.1:7860** in your local browser to access the Gradio Web Agent.
