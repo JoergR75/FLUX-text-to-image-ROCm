@@ -125,5 +125,11 @@ wget https://raw.githubusercontent.com/JoergR75/FLUX-text-to-image-ROCm/refs/hea
 ```echo
 python3 FLUX-gradio-web-agent.py
 ```
+The Web server will be launched with following parameters:
+- http://127.0.0.1:7860 → The Gradio web interface is running locally on your machine. Open this link in your browser to access the app.
+- share=True → If you set this option inside the script’s launch() method, Gradio will create a temporary public URL. This allows you to share access with others outside your local network.
+> ⚠️ **Attention**  
+> The first time you launch the script, it will download the model weights.  
+> This process can take **15–20 minutes**, depending on your hardware and internet connection.
 <img width="516" height="69" alt="{297F19AF-995D-4A17-BBA1-B49F0CB68F36}" src="https://github.com/user-attachments/assets/c8b90dfb-954e-4306-9352-2afdbcf094f9" />
 
