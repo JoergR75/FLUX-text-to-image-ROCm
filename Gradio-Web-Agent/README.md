@@ -3,6 +3,8 @@
 A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm and CUDA systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
 
+<img width="1709" height="952" alt="image" src="https://github.com/user-attachments/assets/2ac83f03-1aec-4c82-b4f0-47a5815b9d8a" />
+
 ---
 
 ## 🚀 Features
