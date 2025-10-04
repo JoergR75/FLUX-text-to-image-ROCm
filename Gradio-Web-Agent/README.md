@@ -5,6 +5,7 @@ This project provides an easy-to-use web UI to generate AI images from text prom
 **Optimized for Multi-GPU (Dual 32GB GPUs) · Supports bf16/fp16 · Hugging Face Models**
 
 [![ROCm](https://img.shields.io/badge/AMD-ROCm_6.x-red)](https://rocmdocs.amd.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.10.0-orange)](https://pytorch.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![Diffusers](https://img.shields.io/badge/HuggingFace-Diffusers-yellow)](https://huggingface.co/docs/diffusers)  
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
