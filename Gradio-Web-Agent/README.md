@@ -1,4 +1,4 @@
-# 🤖 FLUX - Gradio Web UI Agent
+# 🖌️ FLUX Text-to-Image Web UI Agent — ROCm-Ready
 
 A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
