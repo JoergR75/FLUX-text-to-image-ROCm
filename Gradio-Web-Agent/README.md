@@ -2,7 +2,7 @@
 
 A lightweight **Gradio-based web interface** for running the **FLUX text-to-image model** on AMD ROCm systems.  
 This project provides an easy-to-use web UI to generate AI images from text prompts, monitor VRAM usage, and optionally share the interface online.
-**Optimized for Multi-GPU (Dual 32GB GPUs) · Supports bf16/fp16 · Hugging Face Models**
+**Optimized for Multi-GPU (Dual Radeon AI PRO R9700 32GB GPUs) · Supports bf16/fp16 · Hugging Face Models**
 
 [![ROCm](https://img.shields.io/badge/AMD-ROCm_6.x-red)](https://rocmdocs.amd.com/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.10.0.dev%2Brocm6.4-ee4c2c?logo=pytorch)](https://pytorch.org)
