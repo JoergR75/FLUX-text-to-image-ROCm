@@ -169,8 +169,10 @@ Now you can open **http://127.0.0.1:7860** in your local browser to access the G
 
 <img width="1375" height="986" alt="{231D8436-E76C-4EFA-B9FE-A77BCE0896B0}" src="https://github.com/user-attachments/assets/d1fc46b6-8184-4890-baef-6f8281642b4b" />
 Prompt example (1280x768 ressolution, 24 iterations, bf16, black-forest-labs/FLUX.1-schnell):
+
 ```echo
 A sprawling steampunk city with towering brass and iron skyscrapers, glowing steam vents, and intricate gears. Huge airships, zeppelins, and retro-futuristic spaceships float between buildings. Streets filled with mechanical details, glowing lanterns, and rail systems. Cinematic lighting, foggy atmosphere, ultra-realistic, epic perspective, industrial textures, golden brass tones.
 ```
+
 At the right side, you can review the recorded picture. Below is the benchmark information, including TaFT, TOS, T/s, and the GPU memory usage for the 2× RADEON AI PRO R9700 GPUs.
 <img width="1274" height="1045" alt="{E9D010FB-4B93-46B5-AEFA-A88F34355AFC}" src="https://github.com/user-attachments/assets/01f27fcd-8ade-4a3a-b496-413bc8fb09ec" />
